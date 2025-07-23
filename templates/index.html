@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroClima - Monitoreo Climático</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AgroClima</h1>
+        <p>Monitoreo climático para el Valle de Punilla</p>
+        
+        <form id="cityForm" onsubmit="submitCityForm(event)" class="form">
+            <label for="city_name">Ingrese una ciudad:</label>
+            <input type="text" id="city_name" name="city_name" placeholder="Ej: La Cumbre" required>
+            <button type="submit">Consultar Clima</button>
+        </form>
+        
+        <a href="/sensor/last"><button>Ver Datos del Sensor</button></a>
+        <a href="/charts"><button>Ver Gráficos</button></a>
+    </div>
+    <script>
+        function submitCityForm(event) {
+            event.preventDefault();
+            const cityName = document.getElementById('city_name').value.trim().replace(/\s+/g, '%20');
+            window.location.href = `/weather/city/${cityName}`;
+        }
+    </script>
+</body>
+</html>

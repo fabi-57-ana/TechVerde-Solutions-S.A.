@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroClima - Clima API</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Clima en {{ city }}</h1>
+        {% if weather %}
+        <p>Temperatura: {{ weather.main.temp }} °C</p>
+        <p>Humedad: {{ weather.main.humidity }} %</p>
+        <p>Presión: {{ weather.main.pressure }} hPa</p>
+        <p>Viento: {{ weather.wind.speed }} m/s</p>
+        <p>Descripción: {{ weather.weather[0].description }}</p>
+        {% endif %}
+        <h2>Últimos 10 registros</h2>
+        <table>
+            <tr>
+                <th>Ciudad</th>
+                <th>Temperatura (°C)</th>
+                <th>Humedad (%)</th>
+                <th>Presión (hPa)</th>
+                <th>Viento (m/s)</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+            </tr>
+            {% for data in weather_data %}
+            <tr>
+                <td>{{ data.city_name }}</td>
+                <td>{{ data.temperature }}</td>
+                <td>{{ data.humidity }}</td>
+                <td>{{ data.pressure }}</td>
+                <td>{{ data.wind_speed }}</td>
+                <td>{{ data.weather_description }}</td>
+                <td>{{ data.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/" class="btn">Volver</a>
+    </div>
+</body>
+</html>

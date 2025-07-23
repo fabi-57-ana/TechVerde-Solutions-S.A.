@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroClima - Sensor DHT11</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Datos del Sensor DHT11</h1>
+        <h2>Últimos 10 registros</h2>
+        <table>
+            <tr>
+                <th>Temperatura (°C)</th>
+                <th>Humedad (%)</th>
+                <th>Fecha</th>
+            </tr>
+            {% for data in sensor_data %}
+            <tr>
+                <td>{{ data.temperature }}</td>
+                <td>{{ data.humidity }}</td>
+                <td>{{ data.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/" class="btn">Volver</a>
+    </div>
+</body>
+</html>

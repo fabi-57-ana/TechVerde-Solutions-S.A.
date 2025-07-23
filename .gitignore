@@ -1,0 +1,30 @@
+# Archivos y directorios a ignorar
+# Entorno Python
+venv/
+.env
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Archivos de compilación Arduino
+*.bin
+*.elf
+*.hex
+
+# Archivos de Visual Studio Code
+.vscode/
+
+# Archivos temporales y de sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Archivos de base de datos
+*.sql
+*.sqlite
+*.db
+
+# Archivos sensibles
+secrets.json
+config.ini

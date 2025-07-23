@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroClima - Gráficos</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gráficos de Monitoreo Climático</h1>
+        <h2>Comparación de Temperatura</h2>
+        <canvas id="temperatureChart" width="400" height="200"></canvas>
+        <h2>Comparación de Humedad</h2>
+        <canvas id="humidityChart" width="400" height="200"></canvas>
+        <a href="/"><button>Volver a Inicio</button></a>
+    </div>
+    <script>
+        try {
+            const weatherData = {{ weather_data | tojson | safe }};
+            const sensorData = {{ sensor_data | tojson | safe }};
+            
+            console.log('weatherData:', weatherData);
+            console.log('sensorData:', sensorData);
+            
+            // Validar datos
+            if (!Array.isArray(weatherData) || !Array.isArray(sensorData)) {
+                throw new Error('Datos no son arrays válidos');
+            }
+
+            // Formatear timestamps como cadenas cortas para el eje X
+            const formatTimestamp = (isoString) => {
+                const date = new Date(isoString);
+                return date.toLocaleString('es-AR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            };
+
+            const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+            const humidityCtx = document.getElementById('humidityChart').getContext('2d');
+
+            new Chart(temperatureCtx, {
+                type: 'line',
+                data: {
+                    labels: sensorData.map(item => formatTimestamp(item.timestamp)),
+                    datasets: [
+                        {
+                            label: 'Temperatura Sensor (°C)',
+                            data: sensorData.map(item => item.temperature),
+                            borderColor: '#FF6384',
+                            fill: false
+                        },
+                        {
+                            label: 'Temperatura OpenWeatherMap (°C)',
+                            data: weatherData.map(item => item.temperature),
+                            borderColor: '#36A2EB',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Fecha y Hora'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Temperatura (°C)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            new Chart(humidityCtx, {
+                type: 'line',
+                data: {
+                    labels: sensorData.map(item => formatTimestamp(item.timestamp)),
+                    datasets: [
+                        {
+                            label: 'Humedad Sensor (%)',
+                            data: sensorData.map(item => item.humidity),
+                            borderColor: '#FF6384',
+                            fill: false
+                        },
+                        {
+                            label: 'Humedad OpenWeatherMap (%)',
+                            data: weatherData.map(item => item.humidity),
+                            borderColor: '#36A2EB',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Fecha y Hora'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Humedad (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        } catch (e) {
+            console.error('Error al renderizar gráficos:', e);
+        }
+    </script>
+</body>
+</html>
