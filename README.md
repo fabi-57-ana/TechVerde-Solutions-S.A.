@@ -1,7 +1,7 @@
 # AgroClima - TechVerde Solutions S.A.
 
 **AgroClima** es un proyecto innovador desarrollado por **TechVerde Solutions S.A.**, una empresa especializada en Nuevas Tecnologías Aplicadas al Agro. Diseñado para Mariano Correa, propietario de un campo de 20 hectáreas llamado "El Corito" en El Simbolar, Departamento Tulumba, Córdoba, Argentina, este proyecto moderniza las operaciones agrícolas en un entorno sin electricidad ni internet. El campo, dividido en un corral para vacas, cultivo de soja, un monte virgen y una casa, depende actualmente de un molino de viento y un tanque australiano para agua. Con la integración de paneles solares y una antena satelital Starlink, la aplicación permite monitoreo y control remoto de niveles de agua, bombeo, energía solar y riego automatizado.
-
+"""
 Estructura del proyecto
 weather_app/
 ├── .env
@@ -19,7 +19,7 @@ weather_app/
 │   │   ├── styles.css
 │   ├── js/
 │   │   ├── chart.js
-
+"""
 ## Funcionalidades Actuales
 - **Monitoreo Climático**: Registro en tiempo real de temperatura y humedad con el sensor DHT11 (vía ESP32), almacenado en una base de datos MySQL.
 - **Integración con OpenWeatherMap**: Obtención de datos climáticos (temperatura, humedad, presión, viento) para cualquier ciudad, con datos históricos.
