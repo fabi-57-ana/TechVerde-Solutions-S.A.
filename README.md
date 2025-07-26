@@ -4,21 +4,21 @@
 """
 Estructura del proyecto
 weather_app/
-├── .env
-├── requirements.txt
-├── main.py
-├── models.py
-├── database.py
-├── templates/
-│   ├── index.html
-│   ├── weather.html
-│   ├── sensor.html
-│   ├── charts.html
-├── static/
-│   ├── css/
-│   │   ├── styles.css
-│   ├── js/
-│   │   ├── chart.js
+- ├── .env
+- ├── requirements.txt
+- ├── main.py
+- ├── models.py
+- ├── database.py
+- ├── templates/
+- │   ├── index.html
+- │   ├── weather.html
+- │   ├── sensor.html
+- │   ├── charts.html
+- ├── static/
+- │   ├── css/
+- │   │   ├── styles.css
+- │   ├── js/
+- │   │   ├── chart.js
 """
 ## Funcionalidades Actuales
 - **Monitoreo Climático**: Registro en tiempo real de temperatura y humedad con el sensor DHT11 (vía ESP32), almacenado en una base de datos MySQL.
