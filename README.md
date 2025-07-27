@@ -1,11 +1,13 @@
 # AgroClima - TechVerde Solutions S.A.
 
-**AgroClima** es un proyecto innovador desarrollado por **TechVerde Solutions S.A.**, una empresa especializada en Nuevas Tecnologías Aplicadas al Agro. Diseñado para Mariano Correa, propietario de un campo de 20 hectáreas llamado "El Corito" en El Simbolar, Departamento Tulumba, Córdoba, Argentina, este proyecto moderniza las operaciones agrícolas en un entorno sin electricidad ni internet. El campo, dividido en un corral para vacas, cultivo de soja, un huerta (zapallo y calabacines), un monte virgen y una casa, depende actualmente de un molino de viento y un tanque australiano para agua. Con la integración de paneles solares y una antena satelital Starlink, la aplicación permite monitoreo y control remoto de niveles de agua, bombeo, energía solar y riego automatizado.
+**AgroClima** es un proyecto innovador desarrollado por **TechVerde Solutions S.A.**, una empresa especializada en Nuevas Tecnologías Aplicadas al Agro. Diseñado para Mariano Correa, propietario de un campo de 20 hectáreas llamado "El Corito" en El Simbolar, Departamento Tulumba, Córdoba, Argentina, este proyecto moderniza las operaciones agrícolas en un entorno sin electricidad ni internet. El campo, dividido en un corral para vacas, cultivo de soja, una huerta (zapallo y calabacines), un monte virgen y una casa, depende actualmente de un molino de viento y un tanque australiano para agua. Con la integración de paneles solares y una antena satelital Starlink, la aplicación permite monitoreo y control remoto de niveles de agua, bombeo, energía solar y riego automatizado.
 
 - **Estructura del proyecto**
 
 - weather_app/
 - ├── .env
+- ├──init_db.py
+- ├──README.md
 - ├── requirements.txt
 - ├── main.py
 - ├── models.py
@@ -55,7 +57,7 @@
 7. Inicia el servidor: `python main.py`
 
 ## Uso
-- Accede a `http://192.168.0.227:8000` desde un navegador.
+- Accede a `http://192.168.0x.xxx:8000` desde un navegador.
 - Usa el formulario para consultar el clima de cualquier ciudad.
 - Revisa los datos del sensor en `/sensor/last` y los gráficos en `/charts`.
 
