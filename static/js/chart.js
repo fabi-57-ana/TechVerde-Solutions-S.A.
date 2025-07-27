@@ -98,4 +98,3 @@ new Chart(humidityCtx, {
 
 
 
-

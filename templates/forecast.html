@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroClima - Pronóstico para {{ city_name }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Pronóstico para {{ city_name }}</h1>
+        <a href="/"><button>Volver a Inicio</button></a>
+        
+        <!-- Tabla de Pronóstico -->
+        <h2>Pronóstico de 7 Días</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Temperatura Máx (°C)</th>
+                    <th>Temperatura Mín (°C)</th>
+                    <th>Humedad (%)</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in forecast_data %}
+                <tr>
+                    <td>{{ day.date }}</td>
+                    <td>{{ "%.1f"|format(day.temp_max) }}</td>
+                    <td>{{ "%.1f"|format(day.temp_min) }}</td>
+                    <td>{{ day.humidity }}</td>
+                    <td>{{ day.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Gráfico de Pronóstico -->
+        <h2>Gráfico de Temperatura</h2>
+        <canvas id="forecastChart" width="400" height="200"></canvas>
+    </div>
+
+    <script>
+        const forecastData = {{ forecast_data | tojson | safe }};
+        const ctx = document.getElementById('forecastChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: forecastData.map(item => item.date),
+                datasets: [
+                    {
+                        label: 'Temperatura Máxima (°C)',
+                        data: forecastData.map(item => item.temp_max),
+                        borderColor: '#FF6384',
+                        fill: false
+                    },
+                    {
+                        label: 'Temperatura Mínima (°C)',
+                        data: forecastData.map(item => item.temp_min),
+                        borderColor: '#36A2EB',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Temperatura (°C)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
